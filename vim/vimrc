@@ -1,0 +1,73 @@
+filetype off                  " required
+filetype plugin on
+
+" Solarized Dark
+syntax enable
+set t_Co=256
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
+" can select methods with %
+runtime macros/matchit.vim
+let g:ctrlp_show_hidden = 1
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'slim-template/vim-slim.git'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'greplace.vim'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set smartindent
+set ignorecase  " case insensitive search
+set smartcase   " overrides ignore case if you use capital!
+set winwidth=84
+set winheight=5
+set winminheight=5
+set winheight=999
+set number
+set incsearch
+set hlsearch
+
+set nocompatible
+if has("autocmd")
+  filetype indent plugin on
+endif
+
+let mapleader = "\<Space>"
+nmap j gj
+nmap k gk
+nmap 0 ^
+imap jk <esc>
+imap kj <esc>
+imap <C-s> <esc>:w<cr>
+
+command! Q q 
+command! Qall qall
+command! QA qall
+command! E e
+
+nmap <leader>h :nohlsearch<cr>
+" Pre-populate a split command with the current directory
+nmap <leader>s :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+nmap <leader>sc :split db/schema.rb<cr>
+
+" rapid edit vimrc
+nmap <leader>vr :sp $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+
+"2 spaces for tabs and shifts
+set tabstop=2 shiftwidth=2
+" makes backspace work like most other apps
+set backspace=2
+" " scroll offset, keeps 2 lines above the cursor
+set scrolloff=2
