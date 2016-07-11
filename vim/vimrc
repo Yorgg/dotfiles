@@ -24,9 +24,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'greplace.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'tpope/vim-rails.git'
+Plugin 'craigemery/vim-autotag'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+set tags=./tags;
 set smartindent
 set ignorecase  " case insensitive search
 set smartcase   " overrides ignore case if you use capital!
@@ -51,6 +54,12 @@ imap jk <esc>
 imap kj <esc>
 imap <C-s> <esc>:w<cr>
 
+" Remap toggling panes
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 command! Q q 
 command! Qall qall
 command! QA qall
@@ -58,15 +67,18 @@ command! E e
 
 nmap <leader>h :nohlsearch<cr>
 " Pre-populate a split command with the current directory
-nmap <leader>s :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+nmap <leader>sd :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>sc :split db/schema.rb<cr>
 
 " rapid edit vimrc
 nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 
+nmap <leader>s :w<cr>
+
 "2 spaces for tabs and shifts
 set tabstop=2 shiftwidth=2
+
 " makes backspace work like most other apps
 set backspace=2
 " " scroll offset, keeps 2 lines above the cursor
