@@ -2,11 +2,21 @@
 	name = Jon
 	email = jyorg@outlook.com
 [core]
-	excludesfile = /Users/Yorg/.global_ignore
+	excludesfile = /Users/Yorg/.gitignore
 [alias]
+	s   = status
+	ps  = push
+	pl  = pull
+  aa  = add --all
+	b   = branch
+	df  = diff --word-diff --color-words
+	co  = checkout
+	ca  = commit --amend 
 	car = commit --amend --no-edit
 	unstage = reset
-	uncommit = reset --soft HEAD
+	uncommit = reset --soft HEAD^
 	log1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	glog = log -E -i --grep
+	
 
 
