@@ -1,10 +1,5 @@
-filetype off                  " required
-filetype plugin on
-
 " Solarized Dark
 syntax enable
-set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
@@ -18,6 +13,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
+Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'slim-template/vim-slim.git'
@@ -28,48 +24,43 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'tpope/vim-rails.git'
 Plugin 'craigemery/vim-autotag'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()            " required
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
-" zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
+" nerd tree mapping
+map <leader>t :NERDTreeToggle<CR>
 
 set nocompatible
 set tags=./tags;
 set ignorecase  " case insensitive search
 set smartcase   " overrides ignore case if you use capital!
 set smartindent
-set autoindent
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
 set number
 set incsearch
 set hlsearch
 set backspace=2 " makes backspace work like most other apps
 set scrolloff=2 " scroll offset, keeps 2 lines above the cursor
-set expandtab
 set shiftwidth=2
 set softtabstop=2
-
+set paste 
 
 if has("autocmd")
   filetype indent plugin on
 endif
 
 let mapleader = "\<Space>"
+
 nmap j gj
 nmap k gk
-
 nmap 0 ^
-imap jk <esc>
-imap kj <esc>
-imap <C-s> <esc>:w<cr>
+noremap <C-s> <esc>:w<cr>
+
+" Remap ; :
+noremap ; :
 
 " Remap toggling panes
 nnoremap <C-J> <C-W><C-J>
@@ -84,14 +75,16 @@ command! E e
 
 nmap <leader>h :nohlsearch<cr>
 
-" Pre-populate a split command with the current directory
-nmap <leader>sd :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+"rails stuff 
 nmap <leader>sc :split db/schema.rb<cr>
 
 " rapid edit vimrc
 nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
-
 nmap <leader>s :w<cr>
 
+" maximize in new tab
+nmap <leader>nt :tabedit %<cr>  
 
+" close tab
+nmap <leader>ct :tabclose<cr>
